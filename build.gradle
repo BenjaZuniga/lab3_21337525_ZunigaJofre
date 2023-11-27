@@ -3,10 +3,10 @@ plugins {
 }
 
 application {
-    mainClassName = 'Codigo_fuente.Main'
+    mainClassName = 'Codigo_fuente.Main_21337525_ZunigaJofre'
 }
 
-group = 'org.example'
+group = 'Codigo_fuente'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -20,5 +20,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+run{
+    standardInput = System.in
 }
 
