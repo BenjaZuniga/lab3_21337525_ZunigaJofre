@@ -88,7 +88,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
     }
 
     /**
-     * Método para retornar un flow en formato String
+     * Método para imprimir un flow en formato String
      * @return String
      */
     @Override
