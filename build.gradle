@@ -3,7 +3,7 @@ plugins {
 }
 
 application {
-    mainClassName = 'Codigo_fuente.Main_21337525_ZunigaJofre'
+    mainClassName = 'Codigo_fuente.Main'
 }
 
 group = 'Codigo_fuente'
