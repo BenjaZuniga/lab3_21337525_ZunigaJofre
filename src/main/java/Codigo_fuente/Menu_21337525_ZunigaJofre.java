@@ -121,7 +121,7 @@ public class Menu_21337525_ZunigaJofre {
                 System.out.println("3) Añadir una opción a un flujo");
                 System.out.println("4) Crear un chatbot");
                 System.out.println("5) Añadir un flujo a un chatbot");
-                System.out.println("6) Crear un sistema");
+                System.out.println("6) Añadir un chatbot al sistema");
                 System.out.println("7) Hablar con el sistema");
                 System.out.println("8) Mostrar historial");
                 System.out.println("9) Simular conversación");
@@ -143,16 +143,23 @@ public class Menu_21337525_ZunigaJofre {
                         System.out.println(flujo);
                         System.out.println("....................");
                         flujos.add(flujo);
-                        admin(system, username,null,flujos,chatbots);
+                        admin(system, username,opciones,flujos,chatbots);
                     case 3:
                         addOption(opciones, flujos);
-                        admin(system, username,null,flujos,chatbots);
+                        admin(system, username,opciones,flujos,chatbots);
                     case 4:
-                        admin(system, username,null,flujos,chatbots);
+                        Chatbot_21337525_ZunigaJofre chatbot = createChatbot(flujos);
+                        System.out.println("..........Chatbot creado..........");
+                        System.out.println(chatbot);
+                        System.out.println("....................");
+                        chatbots.add(chatbot);
+                        admin(system, username,opciones,flujos,chatbots);
                     case 5:
-                        admin(system, username,null,flujos,chatbots);
+                        addFlow(chatbots,flujos);
+                        admin(system, username,opciones,flujos,chatbots);
                     case 6:
-                        admin(system, username,null,flujos,chatbots);
+                        addChatbot(system,chatbots);
+                        admin(system, username,opciones,flujos,chatbots);
                     case 7:
                         System.out.println("Ingrese un mensaje: ");
                         String message = scanner.nextLine();
@@ -243,6 +250,7 @@ public class Menu_21337525_ZunigaJofre {
         while(terminar != 0){
             try{
                 Scanner scanner5 = new Scanner(System.in);
+                System.out.println("..........Creador de keyword..........");
                 System.out.println("1) Ingresar keyword");
                 System.out.println("2) Terminar");
                 System.out.println("Ingrese su opción: ");
@@ -257,30 +265,63 @@ public class Menu_21337525_ZunigaJofre {
                     case 2:
                         terminar = 0;
                         break;
-            }
-        }catch (Exception e) {
+                }
+            }catch (Exception e) {
                 System.out.println("¡¡ Ingresar una opción valida por favor !!");
             }
         }
         return new Option_21337525_ZunigaJofre(idOp,msgOp,idCbOp,idFlOp,keywords);
     }
     public Flow_21337525_ZunigaJofre crearFlujo(ArrayList<Option_21337525_ZunigaJofre> opciones){
-        Scanner scanner = new Scanner(System.in);
-        Scanner scanner = new Scanner(System.in);
+        Scanner idScanner = new Scanner(System.in);
+        Scanner nameMsgScanner = new Scanner(System.in);
         System.out.println("..........Creador de flujo..........");
         System.out.println("Ingrese el id de su flujo: ");
-        int idOp = scanner.nextInt();
+        int idOp = idScanner.nextInt();
         System.out.println("Ingrese el mensaje de su flujo: ");
-        String msgOp = scanner.nextLine();
-        return new Flow_21337525_ZunigaJofre(idOp,msgOp,opciones);
+        String nameMsg = nameMsgScanner.nextLine();
+        Flow_21337525_ZunigaJofre newFlow = new Flow_21337525_ZunigaJofre(idOp,nameMsg,null);
+        int terminar = -1;
+        while(terminar != 0){
+            try{
+                Scanner optionScanner = new Scanner(System.in);
+                Scanner eleccion = new Scanner(System.in);
+                System.out.println("..........Creador de options..........");
+                int cont = 0;
+                System.out.println("Opciones creadas:");
+                for(Option_21337525_ZunigaJofre option: opciones){
+                    cont += 1;
+                    System.out.println(cont + ") " + option + "\n");
+                }
+                System.out.println("Seleccione la opcion que quiere añadir al flujo:");
+                int optionIndex = optionScanner.nextInt();
+                newFlow.flowAddOption(opciones.get(optionIndex-1));
+                System.out.println("1) Deseo añadir otra option");
+                System.out.println("2) Terminar");
+                System.out.println("Ingrese su opción: ");
+                terminar = eleccion.nextInt();
+                switch(terminar){
+                    case 1:
+                        break;
+                    case 2:
+                        terminar = 0;
+                        break;
+                }
+            }catch (Exception e) {
+                System.out.println("¡¡ Ingresar una opción valida por favor !!");
+            }
+        }
+        return newFlow;
     }
+
     public void addOption(ArrayList<Option_21337525_ZunigaJofre> opciones, ArrayList<Flow_21337525_ZunigaJofre> flujos){
         Scanner flowScanner = new Scanner(System.in);
         Scanner optionScanner = new Scanner(System.in);
-        int cont = 1;
         System.out.println("..........Añadir opcion a flujo..........");
+        int cont = 0;
         System.out.println("Flujos creados:");
         for(Flow_21337525_ZunigaJofre flow: flujos){
+            cont += 1;
             System.out.println(cont +") " + flow + "\n");
         }
         System.out.println("Seleccione el flujo al cual le quiere añadir una opcion:");
@@ -288,31 +329,101 @@ public class Menu_21337525_ZunigaJofre {
         cont = 0;
         System.out.println("Opciones creadas:");
         for(Option_21337525_ZunigaJofre option: opciones){
+            cont += 1;
             System.out.println(cont + ") " + option + "\n");
         }
         System.out.println("Seleccione la opcion que quiere añadir al flujo:");
         int optionIndex = optionScanner.nextInt();
+        int index = -1;
         try {
-            flujos.get(flowIndex - 1).flowAddOption(opciones.get(optionIndex - 1));
-            System.out.println("..........Flujo creado..........");
-            System.out.println(flujos.get(flowIndex - 1));
-            System.out.println("....................");
+            for(Flow_21337525_ZunigaJofre flow: flujos){
+                index += 1;
+                if(index == (flowIndex - 1)){
+                    flow.flowAddOption(opciones.get(optionIndex - 1));
+                    System.out.println("..........Flujo creado..........");
+                    System.out.println(flujos.get(flowIndex - 1));
+                    System.out.println("....................");
+                }
+            }
         }catch (Exception e) {
             System.out.println("Alguno de los indices seleccionados no corresponde");
         }
     }
-    public Chatbot_21337525_ZunigaJofre createChatbot(Flow_21337525_ZunigaJofre flujos){
+    public Chatbot_21337525_ZunigaJofre createChatbot(ArrayList<Flow_21337525_ZunigaJofre> flujos){
         Scanner idScanner = new Scanner(System.in);
         Scanner nameScanner = new Scanner(System.in);
         Scanner wMsgScanner = new Scanner(System.in);
-        Scanner sTFIScanner = new Scanner(System.in);
+        Scanner sFIScanner = new Scanner(System.in);
         System.out.println("..........Creador de chatbots..........");
         System.out.println("Ingrese el id del chatbot:");
-
+        int id = idScanner.nextInt();
         System.out.println("Ingrese el nombre del chatbot:");
-
+        String name = nameScanner.nextLine();
         System.out.println("Ingrese un mensaje de bienvenida para el chatbot:");
-
-        System.out.println("Ingrese el nombre del chatbot:");
+        String welcomeMessage = wMsgScanner.nextLine();
+        System.out.println("Ingrese el id del flujo inicial del chatbot:");
+        int startFlowId = sFIScanner.nextInt();
+        return new Chatbot_21337525_ZunigaJofre(id,name,welcomeMessage,startFlowId,flujos);
+    }
+    public void addFlow(ArrayList<Chatbot_21337525_ZunigaJofre> chatbots, ArrayList<Flow_21337525_ZunigaJofre> flujos){
+        Scanner flowScanner = new Scanner(System.in);
+        Scanner chatbotScanner = new Scanner(System.in);
+        System.out.println("..........Añadir flujo a chatbot..........");
+        System.out.println("Chatbots creados:");
+        int cont = 0;
+        for(Chatbot_21337525_ZunigaJofre chatbot: chatbots){
+            cont += 1;
+            System.out.println(cont + ") " + chatbot + "\n");
+        }
+        System.out.println("Seleccione el chatbot al cual le que quiere añadir un flujo:");
+        int chatbotIndex = chatbotScanner.nextInt();
+        cont = 0;
+        System.out.println("Flujos creados:");
+        for(Flow_21337525_ZunigaJofre flow: flujos){
+            cont += 1;
+            System.out.println(cont +") " + flow + "\n");
+        }
+        System.out.println("Seleccione el flujo que quiere añadir al chatbot:");
+        int flowIndex = flowScanner.nextInt();
+        int index = -1;
+        try {
+            for(Chatbot_21337525_ZunigaJofre chatbot: chatbots){
+                index += 1;
+                if(index == (chatbotIndex - 1)){
+                    chatbot.chatbotAddFlow(flujos.get(flowIndex - 1));
+                    System.out.println("..........Chatbot creado..........");
+                    System.out.println(flujos.get(flowIndex - 1));
+                    System.out.println("....................");
+                }
+            }
+        }catch (Exception e) {
+            System.out.println("Alguno de los indices seleccionados no corresponde");
+        }
+    }
+    public void addChatbot(System_21337525_ZunigaJofre system, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots){
+        Scanner chatbotScanner = new Scanner(System.in);
+        System.out.println("..........Añadir flujo a chatbot..........");
+        System.out.println("Chatbots creados:");
+        int cont = 0;
+        for(Chatbot_21337525_ZunigaJofre chatbot: chatbots){
+            cont += 1;
+            System.out.println(cont + ") " + chatbot + "\n");
+        }
+        System.out.println("Seleccione el chatbot que quiere añadir al sistema:");
+        int chatbotIndex = chatbotScanner.nextInt() - 1;
+        int index = -1;
+        try {
+            for(Chatbot_21337525_ZunigaJofre chatbot: chatbots){
+                index += 1;
+                if(index == chatbotIndex){
+                    system.systemAddChatbot(chatbot);
+                    System.out.println("..........Sistema modificado..........");
+                    System.out.println(system);
+                    System.out.println("....................");
+                }
+            }
+        }catch (Exception e) {
+            System.out.println("El indice del chatbot no corresponde");
+        }
     }
 }
