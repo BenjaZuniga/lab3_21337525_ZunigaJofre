@@ -149,6 +149,8 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
         List<String> userNames = getRegisterUsersNames();
         if(!userNames.contains(user.getName())){
             registerUsers.add(user);
+        }else{
+            System.out.println("Ya existe un usuario con ese nombre");
         }
 
     }
