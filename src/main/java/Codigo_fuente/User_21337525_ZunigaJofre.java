@@ -1,9 +1,11 @@
 package Codigo_fuente;
 
+import java.util.ArrayList;
+
 public class User_21337525_ZunigaJofre {
     private String name;
     private int rol;
-    private String chatHistory;
+    private ArrayList<String> chatHistory;
 
     /**
      * Constructor de User
@@ -13,7 +15,7 @@ public class User_21337525_ZunigaJofre {
     public User_21337525_ZunigaJofre(String name,int rol) {
         this.name = name;
         this.rol = rol;
-        this.chatHistory = "";
+        this.chatHistory = new ArrayList<>();
     }
 
     /**
@@ -36,20 +38,8 @@ public class User_21337525_ZunigaJofre {
      * Método que retorna el chatHistory de un User
      * @return chatHistory
      */
-    public String getChatHistory(){
+    public ArrayList<String> getChatHistory(){
         return chatHistory;
-    }
-
-    /**
-     * Método que comprueba si un User es administrador
-     * @param user User
-     * @return bool
-     */
-    public boolean isAdmin(User_21337525_ZunigaJofre user){
-        if(rol == 1){
-            return true;
-        }
-        return false;
     }
 
     /**
@@ -57,7 +47,7 @@ public class User_21337525_ZunigaJofre {
      * @param newChat String
      */
     public void addChatHistory(String newChat){
-        chatHistory = chatHistory + newChat;
+        this.chatHistory.add(newChat);
     }
 
     /**

@@ -80,7 +80,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
      * @return String
      */
     public String getAllOptionMessages(){
-        String messages = null;
+        String messages = "";
         for(Option_21337525_ZunigaJofre op: options) {
             messages = messages + op.getMessage() + "\n";
         }

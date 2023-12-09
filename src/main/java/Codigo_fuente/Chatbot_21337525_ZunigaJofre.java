@@ -52,14 +52,6 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
     }
 
     /**
-     * Método que retorna el welcomeMessage de un chatbot
-     * @return welcomeMessage
-     */
-    public String getWelcomeMessage() {
-        return welcomeMessage;
-    }
-
-    /**
      * Método que retorna el startFlowId de un chatbot
      * @return startFlowId
      */

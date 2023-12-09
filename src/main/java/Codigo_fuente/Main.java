@@ -1,5 +1,6 @@
 package Codigo_fuente;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,6 +39,9 @@ public class Main {
         System_21337525_ZunigaJofre s1 = new System_21337525_ZunigaJofre("Chatbots Paradigmas", 0, Arrays.asList(cb0,cb0,cb1,cb1,cb2));
 
         Menu_21337525_ZunigaJofre menu = new Menu_21337525_ZunigaJofre();
-        menu.principal(s1);
+        ArrayList<System_21337525_ZunigaJofre> sistemas = new ArrayList<>();
+        sistemas.add(s1);
+
+        menu.elegirSistema(sistemas);
     }
 }
