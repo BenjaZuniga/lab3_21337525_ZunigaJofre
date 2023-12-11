@@ -2,15 +2,30 @@ package Codigo_fuente;
 
 import java.util.ArrayList;
 
+/**
+ * Usuarios que se pueden registrar en un sitema
+ */
 public class User_21337525_ZunigaJofre {
+
+    /**
+     * Nombre del usuario
+     */
     private String name;
+
+    /**
+     * Rol del usuario
+     */
     private int rol;
+
+    /**
+     * Lista con las interacciones con el sistema por parte usuario
+     */
     private ArrayList<String> chatHistory;
 
     /**
      * Constructor de User
-     * @param name String
-     * @param rol int
+     * @param name Nombre del usuario
+     * @param rol Rol que se desea que tenga el usuario
      */
     public User_21337525_ZunigaJofre(String name,int rol) {
         this.name = name;
@@ -20,7 +35,7 @@ public class User_21337525_ZunigaJofre {
 
     /**
      * Método que retorna el name de un User
-     * @return name
+     * @return Nombre dek usuario
      */
     public String getName(){
         return name;
@@ -28,7 +43,7 @@ public class User_21337525_ZunigaJofre {
 
     /**
      * Método que retorna el rol de un User
-     * @return rol
+     * @return Rol del usuario
      */
     public int getRol(){
         return rol;
@@ -36,7 +51,7 @@ public class User_21337525_ZunigaJofre {
 
     /**
      * Método que retorna el chatHistory de un User
-     * @return chatHistory
+     * @return Historial del usuario
      */
     public ArrayList<String> getChatHistory(){
         return chatHistory;
@@ -44,7 +59,7 @@ public class User_21337525_ZunigaJofre {
 
     /**
      * Método que agrega un String al chatHistory de un User
-     * @param newChat String
+     * @param newChat Interaccion que se desea agregar al historial del usuario
      */
     public void addChatHistory(String newChat){
         this.chatHistory.add(newChat);
@@ -52,7 +67,7 @@ public class User_21337525_ZunigaJofre {
 
     /**
      * Método para imprimir un User en formato String
-     * @return String
+     * @return Un usuario en formato String
      */
     @Override
     public String toString(){

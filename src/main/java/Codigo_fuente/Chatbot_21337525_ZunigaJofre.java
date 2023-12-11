@@ -3,20 +3,43 @@ package Codigo_fuente;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Chatbot que contiene flujos y puede ser agregado a un sistema
+ */
 public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_ZunigaJofre {
+
+    /**
+     * Id del Chatbot que permite identificarlo
+     */
     private int id;
+
+    /**
+     * Nombre del Chatbot
+     */
     private String name;
+
+    /**
+     * Mensaje de bienvenida del Chatbot
+     */
     private String welcomeMessage;
+
+    /**
+     * Id del flujo inicial del Chatbot
+     */
     private int startFlowId;
+
+    /**
+     * Lista de Flujos que contiene el Chatbot
+     */
     private List<Flow_21337525_ZunigaJofre> flows;
 
     /**
      * Constructor de chatbot
-     * @param id int
-     * @param name String
-     * @param welcomeMessage String
-     * @param startFlowId int
-     * @param flows List<Flow_21337525_ZunigaJofre>
+     * @param id Id del Chatbot
+     * @param name Nombre del Chatbot
+     * @param welcomeMessage Mensaje de bienvenida del Chatbot
+     * @param startFlowId Id del flujo inicial del Chatbot
+     * @param flows Lista de Flujos que contiene el Chatbot
      */
     public Chatbot_21337525_ZunigaJofre(int id, String name, String welcomeMessage, int startFlowId, List<Flow_21337525_ZunigaJofre> flows) {
         this.id = id;
@@ -37,7 +60,7 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método que retorna el id de un chatbot
-     * @return id
+     * @return Id del Chatbot
      */
     public int getId() {
         return id;
@@ -45,7 +68,7 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método que retorna el name de un chatbot
-     * @return name
+     * @return Nombre del Chatbot
      */
     public String getName() {
         return name;
@@ -53,7 +76,7 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método que retorna el startFlowId de un chatbot
-     * @return startFlowId
+     * @return Id del flujo inicial del Chatbot
      */
     public int getStartFlowId() {
         return startFlowId;
@@ -61,7 +84,7 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método que retorna el flows de un chatbot
-     * @return flows
+     * @return Lista de Flujos que contiene el Chatbot
      */
     public List<Flow_21337525_ZunigaJofre> getFlows() {
         return flows;
@@ -69,7 +92,7 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método que retorna una lista con los ids de todos los flows de un chatbot
-     * @return codes
+     * @return Lista de Ids de los Flujos que contiene el Chatbot
      */
     public ArrayList<Integer> getFlowsIds(){
         ArrayList<Integer> codes = new ArrayList<>();
@@ -85,7 +108,7 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método que agrega un flow aun chatbot si su id no esta repetido
-     * @param flow Flow_21337525_ZunigaJofre
+     * @param flow Flujo que se quiere añadir
      */
     public void chatbotAddFlow(Flow_21337525_ZunigaJofre flow){
         ArrayList<Integer> codes = getFlowsIds();
@@ -97,8 +120,8 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método que busca un flow dentro de un chatbot por su id y lo retorna si es que existe
-     * @param id int
-     * @return flow
+     * @param id Id del Flujo a buscar
+     * @return Flujo con el Id que se estaba buscando, sino existe FLujo con el id a buscar nulo
      */
     public Flow_21337525_ZunigaJofre getFlowById(Integer id){
         for(Flow_21337525_ZunigaJofre flow: flows){
@@ -112,7 +135,7 @@ public class Chatbot_21337525_ZunigaJofre implements Chatbot_Interface_21337525_
 
     /**
      * Método para imprimir un chatbot en formato String
-     * @return String
+     * @return Un chatbot en formato String
      */
     @Override
     public String toString(){

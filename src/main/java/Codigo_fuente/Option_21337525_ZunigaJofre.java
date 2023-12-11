@@ -3,21 +3,42 @@ package Codigo_fuente;
 
 import java.util.List;
 
-
+/**
+ * Representa las opciones de un chatbot a la hora de interactuar
+ */
 public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_ZunigaJofre {
+    /**
+     * Codigo o id de la opcion para identificarla
+     */
     private int code;
+
+    /**
+     * Mensaje que se muestra al usuario
+     */
     private String message;
+
+    /**
+     * Id del chatbot vinculado a la opcion
+     */
     private int chatbotCodeLink;
+
+    /**
+     * Id del flujo vinculado a la opcion
+     */
     private int inicialFlowCodeLink;
+
+    /**
+     * Palabras que puede ingresar el usuario para seleccionar la opcion
+     */
     private List<String> keyword;
 
     /**
      * Constructor de Option
-     * @param code int
-     * @param message String
-     * @param chatbotCodeLink int
-     * @param inicialFlowCodeLink int
-     * @param keyword List<String>
+     * @param code Codigo de la opcion
+     * @param message Mensaje de la opcion
+     * @param chatbotCodeLink Id del chatbot vinculado a la opcion
+     * @param inicialFlowCodeLink Id del flujo vinculado a la opcion
+     * @param keyword Lista de palabras que puede ingresar el usuario para seleccionar la opcion
      */
     public Option_21337525_ZunigaJofre(int code, String message, int chatbotCodeLink, int inicialFlowCodeLink, List<String> keyword) {
         this.code = code;
@@ -30,7 +51,7 @@ public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_Zu
 
     /**
      * Método para retornar el code de un option
-     * @return code
+     * @return Codigo de la opcion
      */
     public Integer getCode() {
         return code;
@@ -38,7 +59,7 @@ public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_Zu
 
     /**
      * Método para retornar el message de un option
-     * @return message
+     * @return Mensaje de la opcion
      */
     public String getMessage() {
         return message;
@@ -46,7 +67,7 @@ public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_Zu
 
     /**
      * Método para retornar el chatbotCodeLink de un option
-     * @return chatbotCodeLink
+     * @return Id del chatbot vinculado a la opcion
      */
     public Integer getChatbotCodeLink() {
         return chatbotCodeLink;
@@ -54,7 +75,7 @@ public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_Zu
 
     /**
      * Método para retornar el inicialFlowCodeLink de un option
-     * @return inicialFlowCodeLink
+     * @return Id del flujo vinculado a la opcion
      */
     public Integer getInicialFlowCodeLink() {
         return inicialFlowCodeLink;
@@ -62,7 +83,7 @@ public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_Zu
 
     /**
      * * Método para retornar el keyword de un option
-     * @return keyword
+     * @return Lista de palabras que puede ingresar el usuario para seleccionar la opcion
      */
     public List<String> getKeyword() {
         return keyword;
@@ -70,7 +91,7 @@ public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_Zu
 
     /**
      * * Método para retornar un option en formato String
-     * @return String
+     * @return Opcion en formato String
      */
     @Override
     public String toString(){

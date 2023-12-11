@@ -4,12 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Menu para que interactue el usuario con uno o varios sitemas
+ */
 public class Menu_21337525_ZunigaJofre {
+
+    /**
+     * Constructor de menu
+     */
     public Menu_21337525_ZunigaJofre(){}
 
     /**
      * Menu que permite elegir con que sistema trabajar
-     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void elegirSistema(ArrayList<System_21337525_ZunigaJofre> sistemas){
         int i = 0;
@@ -31,8 +38,8 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu principal que se vincula con el menu de registro de usuarios y login
-     * @param system System_21337525_ZunigaJofre
-     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     * @param system Sistema con el cual se está trabajando
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void principal(System_21337525_ZunigaJofre system, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
@@ -69,8 +76,8 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu que permite registrar a un sistema un usuario administrador o comun
-     * @param system System_21337525_ZunigaJofre
-     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     * @param system Sistema con el cual se está trabajando
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void registroUsuario(System_21337525_ZunigaJofre system, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
@@ -123,8 +130,8 @@ public class Menu_21337525_ZunigaJofre {
     /**
      * Menu que permite logear un usuario al sistema con el cual se esta trabajando y deriva al menu de usuario
      * comun o administrador segun corresponda
-     * @param system System_21337525_ZunigaJofre
-     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     * @param system Sistema con el cual se está trabajando
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void loginUsuario(System_21337525_ZunigaJofre system, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
@@ -162,12 +169,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para usuarios administradores
-     * @param system System_21337525_ZunigaJofre
-     * @param username String
-     * @param opciones ArrayList<Option_21337525_ZunigaJofre>
-     * @param flujos ArrayList<Flow_21337525_ZunigaJofre>
-     * @param chatbots ArrayList<Chatbot_21337525_ZunigaJofre>
-     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void admin(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                       ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
@@ -309,9 +316,9 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para usuarios comunes
-     * @param system System_21337525_ZunigaJofre
-     * @param username String
-     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void common(System_21337525_ZunigaJofre system, String username, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
@@ -388,7 +395,7 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para crear un sistema
-     * @param chatbots List<Chatbot_21337525_ZunigaJofre>
+     * @param chatbots Lista de chatbots creados por el usuario administrador
      * @return system
      */
     public System_21337525_ZunigaJofre makeSystem(ArrayList<Chatbot_21337525_ZunigaJofre> chatbots){
@@ -440,7 +447,7 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para crear una opcion
-     * @return opcion
+     * @return Opcion creado por el usuario
      */
 
     public Option_21337525_ZunigaJofre makeOption(){
@@ -488,8 +495,8 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para crear un flujo
-     * @param opciones List<Option_21337525_ZunigaJofre>
-     * @return flow
+     * @param opciones Lista de opciones creadas por el usuario administrador
+     * @return Flujo creado por el usuario
      */
     public Flow_21337525_ZunigaJofre crearFlujo(ArrayList<Option_21337525_ZunigaJofre> opciones){
         Scanner idScanner = new Scanner(System.in);
@@ -540,12 +547,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para agregar una opcion a un flujo
-     * @param system
-     * @param username
-     * @param opciones
-     * @param flujos
-     * @param chatbots
-     * @param sistemas
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void addOption(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                           ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
@@ -574,12 +581,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para agregar una opcion a un flujo del sistema actual
-     * @param system
-     * @param username
-     * @param opciones
-     * @param flujos
-     * @param chatbots
-     * @param sistemas
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void addOptionToOldFlow(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                    ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
@@ -628,12 +635,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para agregar una opcion a un flujo creado por el usuario
-     * @param system
-     * @param username
-     * @param opciones
-     * @param flujos
-     * @param chatbots
-     * @param sistemas
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void addOptionToNewFlow(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                    ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
@@ -676,8 +683,8 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para crear un chatbot
-     * @param flujos List<Flow_21337525_ZunigaJofre> flujos
-     * @return chatbot
+     * @param flujos Lista de flujos creados por el usuario
+     * @return Chatbot creado por el usuario
      */
     public Chatbot_21337525_ZunigaJofre createChatbot(ArrayList<Flow_21337525_ZunigaJofre> flujos) {
         Scanner idScanner = new Scanner(System.in);
@@ -734,12 +741,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para agregar un flujo a un chatbot
-     * @param system
-     * @param username
-     * @param opciones
-     * @param flujos
-     * @param chatbots
-     * @param sistemas
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void addFlow(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                         ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
@@ -768,12 +775,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para agregar un flujo a un chatbot ya existente en el sistema
-     * @param system
-     * @param username
-     * @param opciones
-     * @param flujos
-     * @param chatbots
-     * @param sistemas
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void addFlowToOldChatbot(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                     ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
@@ -808,12 +815,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para agregar un flujo a un chatbot creado por el usuario
-     * @param system
-     * @param username
-     * @param opciones
-     * @param flujos
-     * @param chatbots
-     * @param sistemas
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void addFlowToNewChatbot(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                     ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
@@ -856,12 +863,12 @@ public class Menu_21337525_ZunigaJofre {
 
     /**
      * Menu para agregar un chatbot al sistema actual
-     * @param system
-     * @param username
-     * @param opciones
-     * @param flujos
-     * @param chatbots
-     * @param sistemas
+     * @param system Sistema con el cual se está trabajando
+     * @param username Nombre del usuario logeado
+     * @param opciones Lista de opciones que ha creado el usuario admistrador
+     * @param flujos Lista de flujos que ha creado el usuario admistrador
+     * @param chatbots Lista de chatbots que ha creado el usuario admistrador
+     * @param sistemas Lista de sistemas que maneja el menu
      */
     public void addChatbot(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                            ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,

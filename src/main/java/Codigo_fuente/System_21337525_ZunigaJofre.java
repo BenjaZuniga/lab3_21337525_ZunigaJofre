@@ -5,19 +5,46 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Sistema que contiene todo y permite al usuario usar un chatbot
+ */
 public class System_21337525_ZunigaJofre implements System_Interface_21337525_ZunigaJofre{
+
+    /**
+     * Nombre del Sistema
+     */
     private String name;
+
+    /**
+     * Id del chatbot inicial del sistema
+     */
     private int inicialChatbotCodeLink;
+
+    /**
+     * Lista de los usuarios registrados en el sistema
+     */
     private List<User_21337525_ZunigaJofre> registerUsers;
+
+    /**
+     * Lista con el nombre del usuario logeado en el sistema
+     */
     private List<String> loginUser;
+
+    /**
+     * Opciones actuales del sistema, luego de haber interactuado con el
+     */
     private List<Option_21337525_ZunigaJofre> actualOptions;
+
+    /**
+     * Lista de chatbots que contiene el sistema
+     */
     private List<Chatbot_21337525_ZunigaJofre> chatbots;
 
     /**
      * Constructor de System
-     * @param name int
-     * @param inicialChatbotCodeLink String
-     * @param chatbots List<Chatbot_21337525_ZunigaJofre>
+     * @param name Nombre del sistma
+     * @param inicialChatbotCodeLink Id del chatbot inicial del sistema
+     * @param chatbots Lista de chatbots que contiene el sistema
      */
     public System_21337525_ZunigaJofre(String name, int inicialChatbotCodeLink, List<Chatbot_21337525_ZunigaJofre> chatbots){
         this.name = name;
@@ -39,7 +66,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que retorna el name de un System
-     * @return name
+     * @return Nombre del sistema
      */
     public String getName() {
         return name;
@@ -47,7 +74,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que retorna el inicialChatbotCodeLink de un System
-     * @return inicialChatbotCodeLink
+     * @return Id del chatbot inicial del sistema
      */
     public int getInicialChatbotCodeLink(){
         return inicialChatbotCodeLink;
@@ -55,7 +82,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que retorna el registerUsers de un System
-     * @return registerUsers
+     * @return Lista de usuarios registrados en el sistema
      */
     public List<User_21337525_ZunigaJofre> getRegisterUsers() {
         return registerUsers;
@@ -63,7 +90,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que retorna los nombres de los usuarios registrados en un System
-     * @return registerUsersNames
+     * @return Lista de nombres de los usuarios registrados en el sistema
      */
     public List<String>getRegisterUsersNames(){
         List <String> registerUsersNames = new ArrayList<>();
@@ -76,7 +103,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
     }
     /**
      * Método que retorna las actualOptions de un System
-     * @return actualOptions
+     * @return Lista de las opciones actuales del sistema
      */
     public List<Option_21337525_ZunigaJofre> getActualOptions() {
         return actualOptions;
@@ -84,7 +111,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que retorna el loginUser de un System
-     * @return chatbots
+     * @return Lista de chatbots que contiene el sistema
      */
     public List<Chatbot_21337525_ZunigaJofre> getChatbots() {
         return chatbots;
@@ -92,7 +119,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que retorna los ids de los chatbots de un System
-     * @return List<Integer>
+     * @return Lista de los ids de los chatbots que contiene el sistema
      */
     public List<Integer> getChatbotsIds(){
         List<Integer> chatbotsCodes = new ArrayList<>();
@@ -107,8 +134,8 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que busca un chatbot dentro de un System por id
-     * @param id int
-     * @return Chatbot
+     * @param id Id del chatbot a buscar
+     * @return Chatbot con el id a buscar, sino existe nulo
      */
     public Chatbot_21337525_ZunigaJofre getChatbotById(Integer id){
         for(Chatbot_21337525_ZunigaJofre cb: chatbots){
@@ -122,7 +149,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que agrega un chatbot a un System si su id no está repetido
-     * @param chatbot Chatbot
+     * @param chatbot Chatbot que se desea añadir al sistema
      */
     public void systemAddChatbot(Chatbot_21337525_ZunigaJofre chatbot) {
         List<Integer> codes = getChatbotsIds();
@@ -134,7 +161,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que agrega un chatbot a un System si su id no está repetido
-     * @param user User
+     * @param user User que se desea registrar en el sistema
      */
     public void systemAddUser(User_21337525_ZunigaJofre user) {
         List<String> userNames = getRegisterUsersNames();
@@ -148,7 +175,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que logea un usuario a un System si es que esta registrado y no hay otro logeado
-     * @param user String
+     * @param user Nombre del usuario que se desea logear en el sistema
      */
     public void systemLogin(String user) {
         String name;
@@ -165,7 +192,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que permite hablar con un System
-     * @param message String
+     * @param message Mensaje o palabra para interactuar con las opciones del sistema
      */
     public void systemTalk(String message) {
         if(!loginUser.isEmpty()){
@@ -210,8 +237,8 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método que retorna el historial de un usuario
-     * @param username String
-     * @return chatHistory
+     * @param username Nombre del usuario que se quiere el historial
+     * @return Historial del usuario ingresado
      */
     public String systemSynthesis(String username) {
         String synthesis = "";
@@ -227,28 +254,26 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
 
     /**
      * Método para simular una conversación con un System
-     * @param maxInteractions int
-     * @param seed int
+     * @param maxInteractions Número máximo de interacciones de la simulación
+     * @param seed Semilla para generar números pseudoaleatorios
      */
     public void systemSimulate(Integer maxInteractions, Integer seed, System_21337525_ZunigaJofre system) {
         Random randomSeed = new Random(seed);
-        int i = 0;
-        while(i < maxInteractions){
-            if(i == 0){
+        while(maxInteractions != 0){
+            if(system.getActualOptions().isEmpty()){
                 system.systemTalk("Hola");
-                i++;
             }else {
                 int intMsg = randomSeed.nextInt();
                 String message = String.valueOf( intMsg % system.getActualOptions().size() +1);
                 system.systemTalk(message);
-                i++;
             }
+            maxInteractions -= 1;
         }
     }
 
     /**
      * Método para imprimir un System en formato String
-     * @return String
+     * @return Sistema en formato String
      */
     public String toString(){
         return name + "," + inicialChatbotCodeLink + "," + registerUsers + "," + loginUser + "," + actualOptions + "," + chatbots;

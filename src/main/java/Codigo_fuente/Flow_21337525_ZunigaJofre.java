@@ -3,17 +3,30 @@ package Codigo_fuente;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Es una especie de contenedor de Opciones, que permite organizar de mejor manera el sistema
+ */
 public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_ZunigaJofre {
+    /**
+     * Id del flujo para identificarlo
+     */
     private Integer id;
+
+    /**
+     * Nombre del flujo
+     */
     private String nameMsg;
+
+    /**
+     * Lista de opciones que contiene el flujo
+     */
     private List<Option_21337525_ZunigaJofre> options;
 
     /**
      * Constructor de Flow
-     * @param id int
-     * @param nameMsg String
-     * @param options List<Option_21337525_ZunigaJofre>
+     * @param id Id del flujo
+     * @param nameMsg Nombre del flujo
+     * @param options Lista de opciones que contiene el flujo
      */
     public Flow_21337525_ZunigaJofre(Integer id, String nameMsg, List<Option_21337525_ZunigaJofre> options) {
         this.id = id;
@@ -32,7 +45,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
 
     /**
      * Método para retornar el id de un flow
-     * @return id
+     * @return Id del flujo
      */
     public Integer getId() {
         return id;
@@ -40,7 +53,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
 
     /**
      * Método para retornar el nameMsg de un flow
-     * @return nameMsg
+     * @return Nombre del flujo
      */
     public String getName() {
         return nameMsg;
@@ -48,7 +61,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
 
     /**
      * Método para retornar el options de un flow
-     * @return options
+     * @return Lista de opciones que contiene el flujo
      */
     public List<Option_21337525_ZunigaJofre> getOptions() {
         return options;
@@ -65,7 +78,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
 
     /**
      * Método para retornar un String con todos los mensajes de las opciones de un flow
-     * @return String
+     * @return Un String que contiene todos los mensajes de las opciones que contiene el flujo
      */
     public String getAllOptionMessages(){
         String messages = "";
@@ -77,7 +90,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
 
     /**
      * Método para añadir un option a un flow si es que no está repetida
-     * @param option Option
+     * @param option Opcion que se quiere añadir
      */
     public void flowAddOption(Option_21337525_ZunigaJofre option){
         int opcode = option.getCode();
@@ -89,7 +102,7 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
 
     /**
      * Método para imprimir un flow en formato String
-     * @return String
+     * @return Un flujo em formato String
      */
     @Override
     public String toString(){
