@@ -6,6 +6,11 @@ import java.util.Scanner;
 
 public class Menu_21337525_ZunigaJofre {
     public Menu_21337525_ZunigaJofre(){}
+
+    /**
+     * Menu que permite elegir con que sistema trabajar
+     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     */
     public void elegirSistema(ArrayList<System_21337525_ZunigaJofre> sistemas){
         int i = 0;
         System.out.println("..........Seleccion de sistema..........");
@@ -23,6 +28,12 @@ public class Menu_21337525_ZunigaJofre {
             elegirSistema(sistemas);
         }
     }
+
+    /**
+     * Menu principal que se vincula con el menu de registro de usuarios y login
+     * @param system System_21337525_ZunigaJofre
+     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     */
     public void principal(System_21337525_ZunigaJofre system, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
         int opcion = -1;
@@ -55,6 +66,12 @@ public class Menu_21337525_ZunigaJofre {
             }
         }
     }
+
+    /**
+     * Menu que permite registrar a un sistema un usuario administrador o comun
+     * @param system System_21337525_ZunigaJofre
+     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     */
     public void registroUsuario(System_21337525_ZunigaJofre system, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
         int opcion = -1;
@@ -72,19 +89,23 @@ public class Menu_21337525_ZunigaJofre {
                         System.out.println("Ingresar nombre del usuario: ");
                         String username1 = scanner.nextLine();
                         Common_User_21337525_ZunigaJofre newUser1 = new Common_User_21337525_ZunigaJofre(username1);
+                        if(!system.getRegisterUsersNames().contains(username1)){
+                            System.out.println("..........Usuario creado..........");
+                            System.out.println(newUser1);
+                            System.out.println("..............................");
+                        }
                         system.systemAddUser(newUser1);
-                        System.out.println("..........Usuario creado..........");
-                        System.out.println(newUser1);
-                        System.out.println("..............................");
                         registroUsuario(system, sistemas);
                     case 2:
                         System.out.println("Ingresar nombre del usuario: ");
                         String username2 = scanner.nextLine();
                         Admin_User_21337525_ZunigaJofre newUser2 = new Admin_User_21337525_ZunigaJofre(username2);
+                        if(!system.getRegisterUsersNames().contains(username2)){
+                            System.out.println("..........Usuario creado..........");
+                            System.out.println(newUser2);
+                            System.out.println("..............................");
+                        }
                         system.systemAddUser(newUser2);
-                        System.out.println("..........Usuario creado..........");
-                        System.out.println(newUser2);
-                        System.out.println("..............................");
                         registroUsuario(system, sistemas);
                     case 3:
                         principal(system, sistemas);
@@ -98,6 +119,13 @@ public class Menu_21337525_ZunigaJofre {
         }
 
     }
+
+    /**
+     * Menu que permite logear un usuario al sistema con el cual se esta trabajando y deriva al menu de usuario
+     * comun o administrador segun corresponda
+     * @param system System_21337525_ZunigaJofre
+     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     */
     public void loginUsuario(System_21337525_ZunigaJofre system, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
             try {
@@ -106,7 +134,7 @@ public class Menu_21337525_ZunigaJofre {
                 String username = scanner.nextLine();
                 if(!system.getRegisterUsersNames().contains(username)){
                     System.out.println("No se ha registrado un usuario con ese nombre");
-                    loginUsuario(system, sistemas);
+                    principal(system, sistemas);
                 }
                 for (User_21337525_ZunigaJofre user : system.getRegisterUsers()) {
                     if (1 == user.getRol() && username.equals(user.getName())) {
@@ -131,6 +159,16 @@ public class Menu_21337525_ZunigaJofre {
                 loginUsuario(system, sistemas);
             }
     }
+
+    /**
+     * Menu para usuarios administradores
+     * @param system System_21337525_ZunigaJofre
+     * @param username String
+     * @param opciones ArrayList<Option_21337525_ZunigaJofre>
+     * @param flujos ArrayList<Flow_21337525_ZunigaJofre>
+     * @param chatbots ArrayList<Chatbot_21337525_ZunigaJofre>
+     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     */
     public void admin(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                       ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                       ArrayList<System_21337525_ZunigaJofre> sistemas) {
@@ -212,33 +250,46 @@ public class Menu_21337525_ZunigaJofre {
                         elegirSistema(sistemas);
                         break;
                     case 10:
-                        for(User_21337525_ZunigaJofre user: system.getRegisterUsers() ){
-                            if(username.equals(user.getName()) && !user.getChatHistory().isEmpty()){
-                                System.out.println(user.getChatHistory().get(user.getChatHistory().size() - 1) + "\n");
-                                System.out.println("Ingrese un mensaje: ");
-                                String message = scanner.nextLine();
-                                system.systemTalk(message);
-                                System.out.println("Interaccion realizada");
-                                admin(system, username,opciones,flujos,chatbots,sistemas);
-                            }else if (username.equals(user.getName())){
-                                System.out.println("Ingrese un mensaje: ");
-                                String message = scanner.nextLine();
-                                system.systemTalk(message);
-                                System.out.println("Interaccion realizada");
-                                admin(system, username,opciones,flujos,chatbots,sistemas);
+                        System.out.println("Ingrese un mensaje: ");
+                        String message = scanner.nextLine();
+                        system.systemTalk(message);
+                        System.out.println("..........Interaccion realizada...........");
+                        for(User_21337525_ZunigaJofre user: system.getRegisterUsers()){
+                            if(user.getName().equals(username)){
+                                System.out.println(user.getChatHistory().get(user.getChatHistory().size() - 1));
                             }
                         }
+                        System.out.println("....................");
+                        admin(system, username,opciones,flujos,chatbots,sistemas);
                         break;
                     case 11:
                         System.out.println(system.systemSynthesis(username));
                         admin(system, username,opciones,flujos,chatbots,sistemas);
                         break;
                     case 12:
+                        Scanner seedScanner = new Scanner(System.in);
                         System.out.println("Ingrese un número máximo de interacciones: ");
                         int maxInteractions = scanner.nextInt();
+                        if(maxInteractions == 0){
+                            System.out.println("No se pueden realizar 0 interacciones");
+                            break;
+                        }
                         System.out.println("Ingrese una semilla para generar la simulación: ");
-                        int seed = scanner.nextInt();
-                        system.systemSimulate(maxInteractions, seed);
+                        int seed = seedScanner.nextInt();
+                        if(seed == 0){
+                            System.out.println("No se pueden tener 0 como semilla");
+                            break;
+                        }
+                        String newUsername = "User" + seed;
+                        Common_User_21337525_ZunigaJofre newUser= new Common_User_21337525_ZunigaJofre(newUsername);
+                        System_21337525_ZunigaJofre simulate = new System_21337525_ZunigaJofre(system.getName(),system.getInicialChatbotCodeLink(),system.getChatbots());
+                        simulate.systemLogout();
+                        simulate.systemAddUser(newUser);
+                        simulate.systemLogin(newUsername);
+                        simulate.systemSimulate(maxInteractions, seed, simulate);
+                        System.out.println("..........Interaccion realizada...........");
+                        System.out.println(simulate.systemSynthesis(newUsername));
+                        System.out.println("....................");
                         admin(system, username,opciones,flujos,chatbots,sistemas);
                         break;
                     case 13:
@@ -255,6 +306,13 @@ public class Menu_21337525_ZunigaJofre {
             }
         }
     }
+
+    /**
+     * Menu para usuarios comunes
+     * @param system System_21337525_ZunigaJofre
+     * @param username String
+     * @param sistemas ArrayList<System_21337525_ZunigaJofre>
+     */
     public void common(System_21337525_ZunigaJofre system, String username, ArrayList<System_21337525_ZunigaJofre> sistemas){
         Scanner scanner = new Scanner(System.in);
         int opcion = -1;
@@ -271,33 +329,46 @@ public class Menu_21337525_ZunigaJofre {
                 opcion = Integer.parseInt(scanner.nextLine());
                 switch (opcion){
                     case 1:
-                        for(User_21337525_ZunigaJofre user: system.getRegisterUsers() ){
-                            if(username.equals(user.getName()) && !user.getChatHistory().isEmpty()){
-                                System.out.println(user.getChatHistory().get(user.getChatHistory().size() - 1) + "\n");
-                                System.out.println("Ingrese un mensaje: ");
-                                String message = scanner.nextLine();
-                                system.systemTalk(message);
-                                System.out.println("Interaccion realizada");
-                                common(system, username,sistemas);
-                            }else if (username.equals(user.getName())){
-                                System.out.println("Ingrese un mensaje: ");
-                                String message = scanner.nextLine();
-                                system.systemTalk(message);
-                                System.out.println("Interaccion realizada");
-                                common(system, username,sistemas);
+                        System.out.println("Ingrese un mensaje: ");
+                        String message = scanner.nextLine();
+                        system.systemTalk(message);
+                        System.out.println("..........Interaccion realizada...........");
+                        for(User_21337525_ZunigaJofre user: system.getRegisterUsers()){
+                            if(user.getName().equals(username)){
+                                System.out.println(user.getChatHistory().get(user.getChatHistory().size() - 1));
                             }
                         }
+                        System.out.println("....................");
+                        common(system, username,sistemas);
                         break;
                     case 2:
                         System.out.println(system.systemSynthesis(username));
                         common(system, username, sistemas);
                         break;
                     case 3:
+                        Scanner seedScanner = new Scanner(System.in);
                         System.out.println("Ingrese un número máximo de interacciones: ");
                         int maxInteractions = scanner.nextInt();
+                        if(maxInteractions == 0){
+                            System.out.println("No se pueden realizar 0 interacciones");
+                            break;
+                        }
                         System.out.println("Ingrese una semilla para generar la simulación: ");
-                        int seed = scanner.nextInt();
-                        system.systemSimulate(maxInteractions, seed);
+                        int seed = seedScanner.nextInt();
+                        if(seed == 0){
+                            System.out.println("No se pueden tener 0 como semilla");
+                            break;
+                        }
+                        String newUsername = "User" + seed;
+                        Common_User_21337525_ZunigaJofre newUser= new Common_User_21337525_ZunigaJofre(newUsername);
+                        System_21337525_ZunigaJofre simulate = new System_21337525_ZunigaJofre(system.getName(),system.getInicialChatbotCodeLink(),system.getChatbots());
+                        simulate.systemLogout();
+                        simulate.systemAddUser(newUser);
+                        simulate.systemLogin(newUsername);
+                        simulate.systemSimulate(maxInteractions, seed, simulate);
+                        System.out.println("..........Interaccion realizada...........");
+                        System.out.println(simulate.systemSynthesis(newUsername));
+                        System.out.println("....................");
                         common(system, username,sistemas);
                         break;
                     case 4:
@@ -314,6 +385,12 @@ public class Menu_21337525_ZunigaJofre {
             }
         }
     }
+
+    /**
+     * Menu para crear un sistema
+     * @param chatbots List<Chatbot_21337525_ZunigaJofre>
+     * @return system
+     */
     public System_21337525_ZunigaJofre makeSystem(ArrayList<Chatbot_21337525_ZunigaJofre> chatbots){
         Scanner eleccionScanner = new Scanner(System.in);
         System.out.println("..........Creador de sistema..........");
@@ -361,6 +438,11 @@ public class Menu_21337525_ZunigaJofre {
         return new System_21337525_ZunigaJofre(name, inicialChatbot, newChatbots);
     }
 
+    /**
+     * Menu para crear una opcion
+     * @return opcion
+     */
+
     public Option_21337525_ZunigaJofre makeOption(){
         Scanner scanner0 = new Scanner(System.in);
         Scanner scanner1 = new Scanner(System.in);
@@ -403,6 +485,12 @@ public class Menu_21337525_ZunigaJofre {
         }
         return new Option_21337525_ZunigaJofre(idOp,msgOp,idCbOp,idFlOp,keywords);
     }
+
+    /**
+     * Menu para crear un flujo
+     * @param opciones List<Option_21337525_ZunigaJofre>
+     * @return flow
+     */
     public Flow_21337525_ZunigaJofre crearFlujo(ArrayList<Option_21337525_ZunigaJofre> opciones){
         Scanner idScanner = new Scanner(System.in);
         Scanner nameMsgScanner = new Scanner(System.in);
@@ -450,6 +538,15 @@ public class Menu_21337525_ZunigaJofre {
         return new Flow_21337525_ZunigaJofre(idFlow,nameMsg,options);
     }
 
+    /**
+     * Menu para agregar una opcion a un flujo
+     * @param system
+     * @param username
+     * @param opciones
+     * @param flujos
+     * @param chatbots
+     * @param sistemas
+     */
     public void addOption(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                           ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                           ArrayList<System_21337525_ZunigaJofre> sistemas){
@@ -474,6 +571,16 @@ public class Menu_21337525_ZunigaJofre {
             System.out.println("¡¡ Ingresar una opción valida por favor !!");
         }
     }
+
+    /**
+     * Menu para agregar una opcion a un flujo del sistema actual
+     * @param system
+     * @param username
+     * @param opciones
+     * @param flujos
+     * @param chatbots
+     * @param sistemas
+     */
     public void addOptionToOldFlow(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                    ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                                    ArrayList<System_21337525_ZunigaJofre> sistemas){
@@ -518,6 +625,16 @@ public class Menu_21337525_ZunigaJofre {
         }
         admin(system,username,opciones,flujos,chatbots, sistemas);
     }
+
+    /**
+     * Menu para agregar una opcion a un flujo creado por el usuario
+     * @param system
+     * @param username
+     * @param opciones
+     * @param flujos
+     * @param chatbots
+     * @param sistemas
+     */
     public void addOptionToNewFlow(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                    ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                                    ArrayList<System_21337525_ZunigaJofre> sistemas){
@@ -556,6 +673,12 @@ public class Menu_21337525_ZunigaJofre {
         }
         admin(system,username,opciones,flujos,chatbots, sistemas);
     }
+
+    /**
+     * Menu para crear un chatbot
+     * @param flujos List<Flow_21337525_ZunigaJofre> flujos
+     * @return chatbot
+     */
     public Chatbot_21337525_ZunigaJofre createChatbot(ArrayList<Flow_21337525_ZunigaJofre> flujos) {
         Scanner idScanner = new Scanner(System.in);
         Scanner nameScanner = new Scanner(System.in);
@@ -608,6 +731,16 @@ public class Menu_21337525_ZunigaJofre {
         }
         return new Chatbot_21337525_ZunigaJofre(id, name, welcomeMessage, startFlowId, newFlows);
     }
+
+    /**
+     * Menu para agregar un flujo a un chatbot
+     * @param system
+     * @param username
+     * @param opciones
+     * @param flujos
+     * @param chatbots
+     * @param sistemas
+     */
     public void addFlow(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                         ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                         ArrayList<System_21337525_ZunigaJofre> sistemas){
@@ -632,6 +765,16 @@ public class Menu_21337525_ZunigaJofre {
             System.out.println("¡¡ Ingresar una opción valida por favor !!");
         }
     }
+
+    /**
+     * Menu para agregar un flujo a un chatbot ya existente en el sistema
+     * @param system
+     * @param username
+     * @param opciones
+     * @param flujos
+     * @param chatbots
+     * @param sistemas
+     */
     public void addFlowToOldChatbot(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                     ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                                     ArrayList<System_21337525_ZunigaJofre> sistemas){
@@ -662,6 +805,16 @@ public class Menu_21337525_ZunigaJofre {
         }
         admin(system,username,opciones,flujos,chatbots, sistemas);
     }
+
+    /**
+     * Menu para agregar un flujo a un chatbot creado por el usuario
+     * @param system
+     * @param username
+     * @param opciones
+     * @param flujos
+     * @param chatbots
+     * @param sistemas
+     */
     public void addFlowToNewChatbot(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                                     ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                                     ArrayList<System_21337525_ZunigaJofre> sistemas){
@@ -700,6 +853,16 @@ public class Menu_21337525_ZunigaJofre {
         }
         admin(system,username,opciones,flujos,chatbots,sistemas);
     }
+
+    /**
+     * Menu para agregar un chatbot al sistema actual
+     * @param system
+     * @param username
+     * @param opciones
+     * @param flujos
+     * @param chatbots
+     * @param sistemas
+     */
     public void addChatbot(System_21337525_ZunigaJofre system, String username, ArrayList<Option_21337525_ZunigaJofre> opciones,
                            ArrayList<Flow_21337525_ZunigaJofre> flujos, ArrayList<Chatbot_21337525_ZunigaJofre> chatbots,
                            ArrayList<System_21337525_ZunigaJofre> sistemas){

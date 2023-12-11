@@ -49,7 +49,7 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
      * Método que retorna el inicialChatbotCodeLink de un System
      * @return inicialChatbotCodeLink
      */
-    public int getInicialChatbotCodeLink() {
+    public int getInicialChatbotCodeLink(){
         return inicialChatbotCodeLink;
     }
 
@@ -74,17 +74,8 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
         }
         return registerUsersNames;
     }
-
     /**
-     * Método que retorna el loginUser de un System
-     * @return loginUser
-     */
-    public List<String> getLoginUser() {
-        return loginUser;
-    }
-
-    /**
-     * Método que retorna el actualOptions de un System
+     * Método que retorna las actualOptions de un System
      * @return actualOptions
      */
     public List<Option_21337525_ZunigaJofre> getActualOptions() {
@@ -181,34 +172,37 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
             Date date = new Date();
             String chat;
             chat = date + " - " + loginUser.get(0) + ": " + message + "\n";
-            if(actualOptions.isEmpty()){
+            if(actualOptions.isEmpty()) {
                 Chatbot_21337525_ZunigaJofre cb = getChatbotById(inicialChatbotCodeLink);
-                chat += date +  " - " + cb.getName() + "\n";
+                chat += date + " - " + cb.getName() + "\n";
                 Flow_21337525_ZunigaJofre flow = cb.getFlowById(cb.getStartFlowId());
-                chat += flow.getName() +"\n" + flow.getAllOptionMessages();
+                chat += flow.getName() + "\n" + flow.getAllOptionMessages();
                 actualOptions = flow.getOptions();
-            }else{
-                for(Option_21337525_ZunigaJofre op: actualOptions){
-                    try {
-                        if(op.getKeyword().contains(message) ||op.getMessage().contains(message)){
-                            Chatbot_21337525_ZunigaJofre cb = getChatbotById(op.getChatbotCodeLink());
-                            chat =  chat + date + " - " + cb.getName() + "\n";
-                            Flow_21337525_ZunigaJofre flow = cb.getFlowById(op.getInicialFlowCodeLink());
-                            chat = chat + flow.getName() +"\n" + flow.getAllOptionMessages();
-                            actualOptions = flow.getOptions();
-                        }else{
-                            System.out.println("Ninguna opción tiene asociado el mensaje ingresado");
-                            break;
-                        }
-                    }catch (Exception e) {
-                        System.out.println("Ninguna opción tiene asociado el mensaje ingresado");
+                for(User_21337525_ZunigaJofre user: registerUsers){
+                    String nameUser = user.getName();
+                    if(nameUser.equals(loginUser.get(0))){
+                        user.addChatHistory(chat);
                     }
                 }
-            }
-            for(User_21337525_ZunigaJofre user: registerUsers){
-                String nameUser = user.getName();
-                if(nameUser.equals(loginUser.get(0))){
-                    user.addChatHistory(chat);
+            }else {
+                try {
+                    for (Option_21337525_ZunigaJofre op : actualOptions) {
+                        if (op.getKeyword().contains(message) || op.getMessage().contains(message)) {
+                            Chatbot_21337525_ZunigaJofre cb = getChatbotById(op.getChatbotCodeLink());
+                            chat = chat + date + " - " + cb.getName() + "\n";
+                            Flow_21337525_ZunigaJofre flow = cb.getFlowById(op.getInicialFlowCodeLink());
+                            chat = chat + flow.getName() + "\n" + flow.getAllOptionMessages();
+                            actualOptions = flow.getOptions();
+                            for (User_21337525_ZunigaJofre user : registerUsers) {
+                                String nameUser = user.getName();
+                                if (nameUser.equals(loginUser.get(0))) {
+                                    user.addChatHistory(chat);
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Ninguna opcion tiene asociado el mensaje ingresado");
                 }
             }
         }
@@ -236,11 +230,19 @@ public class System_21337525_ZunigaJofre implements System_Interface_21337525_Zu
      * @param maxInteractions int
      * @param seed int
      */
-    public void systemSimulate(Integer maxInteractions, Integer seed) {
-        while(maxInteractions != 0){
-            String message = String.valueOf((seed % (actualOptions.size()- 1))+ 1);
-            systemTalk(message);
-            maxInteractions -= 1;
+    public void systemSimulate(Integer maxInteractions, Integer seed, System_21337525_ZunigaJofre system) {
+        Random randomSeed = new Random(seed);
+        int i = 0;
+        while(i < maxInteractions){
+            if(i == 0){
+                system.systemTalk("Hola");
+                i++;
+            }else {
+                int intMsg = randomSeed.nextInt();
+                String message = String.valueOf( intMsg % system.getActualOptions().size() +1);
+                system.systemTalk(message);
+                i++;
+            }
         }
     }
 

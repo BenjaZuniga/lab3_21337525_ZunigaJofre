@@ -64,18 +64,6 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
     }
 
     /**
-     * Método para añadir un option a un flow si es que no está repetida
-     * @param option Option
-     */
-    public void flowAddOption(Option_21337525_ZunigaJofre option){
-        int opcode = option.getCode();
-        ArrayList<Integer> codes = getOptionsCodes();
-        if(!codes.contains(opcode)){
-            options.add(option);
-        }
-    }
-
-    /**
      * Método para retornar un String con todos los mensajes de las opciones de un flow
      * @return String
      */
@@ -85,6 +73,18 @@ public class Flow_21337525_ZunigaJofre  implements Flow_Interface_21337525_Zunig
             messages = messages + op.getMessage() + "\n";
         }
         return messages;
+    }
+
+    /**
+     * Método para añadir un option a un flow si es que no está repetida
+     * @param option Option
+     */
+    public void flowAddOption(Option_21337525_ZunigaJofre option){
+        int opcode = option.getCode();
+        ArrayList<Integer> codes = getOptionsCodes();
+        if(!codes.contains(opcode)){
+            options.add(option);
+        }
     }
 
     /**
