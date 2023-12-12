@@ -21,6 +21,12 @@ public class Menu_21337525_ZunigaJofre {
     public void elegirSistema(ArrayList<System_21337525_ZunigaJofre> sistemas){
         int i = 0;
         System.out.println("..........Seleccion de sistema..........");
+        if(sistemas.isEmpty()){
+            System.out.println("No existen sistemas");
+            ArrayList<Chatbot_21337525_ZunigaJofre> chatbots = new ArrayList<>();
+            System_21337525_ZunigaJofre newS = makeSystem(chatbots);
+            sistemas.add(newS);
+        }
         for(System_21337525_ZunigaJofre sistema: sistemas){
             System.out.println(++i + ") " + sistema + "\n");
         }
@@ -259,7 +265,7 @@ public class Menu_21337525_ZunigaJofre {
                     case 10:
                         System.out.println("Ingrese un mensaje: ");
                         String message = scanner.nextLine();
-                        system.systemTalk(message);
+                        system.systemTalk(message.toLowerCase());
                         System.out.println("..........Interaccion realizada...........");
                         for(User_21337525_ZunigaJofre user: system.getRegisterUsers()){
                             if(user.getName().equals(username)){
@@ -338,7 +344,7 @@ public class Menu_21337525_ZunigaJofre {
                     case 1:
                         System.out.println("Ingrese un mensaje: ");
                         String message = scanner.nextLine();
-                        system.systemTalk(message);
+                        system.systemTalk(message.toLowerCase());
                         System.out.println("..........Interaccion realizada...........");
                         for(User_21337525_ZunigaJofre user: system.getRegisterUsers()){
                             if(user.getName().equals(username)){

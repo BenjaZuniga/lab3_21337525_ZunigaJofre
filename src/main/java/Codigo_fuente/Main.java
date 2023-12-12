@@ -7,6 +7,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        //Sistema de pruebas
         Option_21337525_ZunigaJofre op1 = new Option_21337525_ZunigaJofre(1, "1) Viajar", 1,1, Arrays.asList("viajar", "turistear", "conocer"));
         Option_21337525_ZunigaJofre op2 = new Option_21337525_ZunigaJofre(2, "2) Estudiar", 2, 1, Arrays.asList("estudiar", "aprender","perfeccionarme"));
         Option_21337525_ZunigaJofre op3 = new Option_21337525_ZunigaJofre(1, "1) New York, USA",1,2,Arrays.asList("Estados unidos", "New York"));

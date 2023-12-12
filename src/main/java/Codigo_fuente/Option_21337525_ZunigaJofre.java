@@ -2,6 +2,7 @@ package Codigo_fuente;
 
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Representa las opciones de un chatbot a la hora de interactuar
@@ -45,7 +46,11 @@ public class Option_21337525_ZunigaJofre implements Option_Interface_21337525_Zu
         this.message = message;
         this.chatbotCodeLink = chatbotCodeLink;
         this.inicialFlowCodeLink = inicialFlowCodeLink;
-        this.keyword = keyword ;
+        ArrayList<String> newKey = new ArrayList<>();
+        for(String key: keyword){
+            newKey.add(key.toLowerCase());
+        }
+        this.keyword = newKey ;
     }
 
 
